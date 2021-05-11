@@ -25,7 +25,7 @@ function TodoFeature(props) {
 
   const [todoList, setTodoList] = useState(initTodoList);
 
-  const handleTodoClick = (todo, idx) => {
+  const handleTodoClick = (idx) => {
     // clone current array to the new array
     const newTodoList = [...todoList];
 
