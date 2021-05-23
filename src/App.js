@@ -1,11 +1,20 @@
-import React from "react";
-import { Redirect, Route, Switch } from "react-router";
-import { NavLink } from "react-router-dom";
-import AlbumFeature from "./features/Album";
-import TodoFeature from "./features/Todo";
-import NotFound from "./components/NotFound";
+import React, { useEffect } from 'react';
+import { Redirect, Route, Switch } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import AlbumFeature from './features/Album';
+import TodoFeature from './features/Todo';
+import NotFound from './components/NotFound';
+import categoryApi from './api/categoryApi';
 
 function App() {
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const categoryList = await categoryApi.getAll();
+      console.log(categoryList);
+    };
+    fetchCategory();
+  }, []);
+
   return (
     <div className="App">
       <div>Header</div>
