@@ -6,6 +6,13 @@ import TodoFeature from './features/Todo';
 import NotFound from './components/NotFound';
 import categoryApi from './api/categoryApi';
 import CounterFeature from './features/Counter';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  font-weight: bold;
+
+  color: ${(props) => props.color || 'red'};
+`;
 
 function App() {
   useEffect(() => {
@@ -18,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>Header</div>
+      <Title color="blue">HEADING</Title>
       <p>
         <NavLink to="/todos" activeClassName="active-menu">
           Todos
@@ -39,7 +46,6 @@ function App() {
         <Route path="/albums" component={AlbumFeature} />
         <Route component={NotFound} />
       </Switch>
-
     </div>
   );
 }
