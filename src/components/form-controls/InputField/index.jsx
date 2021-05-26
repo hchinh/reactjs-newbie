@@ -26,10 +26,9 @@ function InputField(props) {
         <TextField
           onChange={onChange}
           onBlur={onBlur}
-          selected={value}
+          value={value}
           label={label}
           disabled={disabled}
-          fullWidth
           error={!!hasError}
           helperText={errors[name]?.message}
         />

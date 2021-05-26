@@ -86,7 +86,14 @@ function ListPage(props) {
   }, [todoList, filteredStatus]);
 
   const handleTodoFormSubmit = (values) => {
-    console.log(values);
+    const newTodo = {
+      id: todoList.length + 1,
+      title: values.title,
+      status: 'new',
+    };
+
+    const newTodoList = [...todoList, newTodo];
+    setTodoList(newTodoList);
   };
 
   return (
