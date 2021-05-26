@@ -13,6 +13,9 @@ InputField.propTypes = {
 
 function InputField(props) {
   const { form, name, label, disabled } = props;
+  const {
+    formState: { errors },
+  } = form;
 
   return (
     <Controller
