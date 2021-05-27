@@ -1,18 +1,11 @@
+import Header from 'components/Header';
 import React, { useEffect } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { NavLink } from 'react-router-dom';
-import AlbumFeature from './features/Album';
-import TodoFeature from './features/Todo';
-import NotFound from './components/NotFound';
 import categoryApi from './api/categoryApi';
+import NotFound from './components/NotFound';
+import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-weight: bold;
-
-  color: ${(props) => props.color || 'red'};
-`;
+import TodoFeature from './features/Todo';
 
 function App() {
   useEffect(() => {
@@ -25,17 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Title color="blue">HEADING</Title>
-      <p>
-        <NavLink to="/todos" activeClassName="active-menu">
-          Todos
-        </NavLink>
-      </p>
-      <p>
-        <NavLink to="/albums" activeClassName="active">
-          Album
-        </NavLink>
-      </p>
+      <Header />
 
       <Switch>
         <Redirect from="/home" to="/" exact />
