@@ -1,4 +1,4 @@
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '../../../node_modules/@reduxjs/toolkit/dist/typings';
 
 const counterSlice = createSlice({
   name: 'counter',
