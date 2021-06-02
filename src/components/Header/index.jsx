@@ -10,8 +10,9 @@ import { AccountCircle, Close } from '@material-ui/icons';
 import AppleIcon from '@material-ui/icons/Apple';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
+import { logout } from 'features/Auth/userSlice';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +46,7 @@ const MODE = {
 };
 
 export default function Header() {
+  const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.current);
   const isLoggedIn = !!loggedInUser.id;
   const [open, setOpen] = useState(false);
@@ -65,6 +67,11 @@ export default function Header() {
 
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogoutClick = () => {
+    const action = logout();
+    dispatch(action);
   };
 
   const classes = useStyles();
@@ -120,7 +127,7 @@ export default function Header() {
         getContentAnchorEl={null}
       >
         <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
-        <MenuItem onClick={handleCloseMenu}>Logout</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
       </Menu>
 
       <Dialog
