@@ -1,22 +1,13 @@
 import Header from 'components/Header';
 import ProductFeature from 'features/Product';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import categoryApi from './api/categoryApi';
 import NotFound from './components/NotFound';
 import AlbumFeature from './features/Album';
 import CounterFeature from './features/Counter';
 import TodoFeature from './features/Todo';
 
 function App() {
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const categoryList = await categoryApi.getAll();
-      console.log(categoryList);
-    };
-    fetchCategory();
-  }, []);
-
   return (
     <div className="App">
       <Header />
