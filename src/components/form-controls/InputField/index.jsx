@@ -22,7 +22,7 @@ function InputField(props) {
     <Controller
       name={name}
       control={form.control}
-      render={({ field: { onChange, onBlur, value } }) => (
+      render={({ field: { onChange, onBlur, value, name } }) => (
         <TextField
           onChange={onChange}
           onBlur={onBlur}

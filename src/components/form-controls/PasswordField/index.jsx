@@ -37,7 +37,7 @@ function PasswordField(props) {
       <Controller
         name={name}
         control={form.control}
-        render={({ field: { onChange, onBlur, value } }) => (
+        render={({ field: { onChange, onBlur, value, name } }) => (
           <OutlinedInput
             onChange={onChange}
             onBlur={onBlur}
