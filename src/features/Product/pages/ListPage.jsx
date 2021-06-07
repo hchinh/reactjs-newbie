@@ -4,7 +4,8 @@ import productApi from 'api/productApi';
 import queryString from 'query-string';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
-import FilterViewer from '../components/Filters/FilterViewer';
+import FilterViewer from '../components/FilterViewer';
+
 import ProductFilters from '../components/ProductFilters';
 import ProductList from '../components/ProductList';
 import ProductSkeletonList from '../components/ProductSkeletonList';
