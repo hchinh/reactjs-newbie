@@ -11,7 +11,9 @@ import ProductThumbnail from '../components/ProductThumbnail';
 import useProductDetail from '../hooks/useProductDetail';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    paddingBottom: theme.spacing(3),
+  },
 
   left: {
     width: '400px',
