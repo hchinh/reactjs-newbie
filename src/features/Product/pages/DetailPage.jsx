@@ -1,4 +1,5 @@
-import { Box, Container, Grid, LinearProgress, makeStyles, Paper } from '@material-ui/core';
+import { Box, Container, Grid, LinearProgress, makeStyles, Paper, Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 import { addToCart } from 'features/Cart/cartSlice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -36,9 +37,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function DetailPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   const {
     params: { productId },
@@ -62,11 +75,24 @@ function DetailPage() {
       quantity,
     });
     dispatch(action);
+
+    setOpen(true);
   };
 
   return (
     <Box className={classes.root}>
       <Container>
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        >
+          <Alert onClose={handleClose} severity="success">
+            Thêm vào giỏ hàng thành công!
+          </Alert>
+        </Snackbar>
+
         <Paper elevation={0}>
           <Grid container>
             <Grid className={classes.left} item>
