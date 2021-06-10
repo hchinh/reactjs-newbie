@@ -42,11 +42,11 @@ const useStyles = makeStyles((theme) => ({
   },
 
   salePrice: {
-    marginRight: theme.spacing(1.5),
     fontWeight: 'bold',
   },
 
   originalPrice: {
+    marginLeft: theme.spacing(1),
     textDecoration: 'line-through',
   },
 }));
