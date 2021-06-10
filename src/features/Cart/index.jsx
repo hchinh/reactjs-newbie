@@ -1,5 +1,7 @@
 import { Box, Container, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from './cartSlice';
 import DetailCart from './components/DetailCart';
 import ProductTotal from './components/ProductTotal';
 import TotalCost from './components/TotalCost';
@@ -12,28 +14,34 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(3),
   },
   left: {
-    width: '900px',
+    width: '920px',
     paddingRight: theme.spacing(1.5),
   },
   right: {
-    width: '330px',
+    width: '310px',
     padding: theme.spacing(1.5),
   },
 }));
 
 function CartFeature() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = (productId) => {
+    const action = removeFromCart(productId);
+    dispatch(action);
+  };
 
   return (
     <Box className={classes.root}>
       <Container>
-        <Typography component="h1" variant="h4" style={{ marginBottom: '12px' }}>
+        <Typography component="h1" variant="h5" style={{ marginBottom: '12px' }}>
           GIỎ HÀNG
         </Typography>
         <Grid container>
           <Grid item className={classes.left}>
             <ProductTotal />
-            <DetailCart />
+            <DetailCart onRemove={handleRemoveFromCart} />
           </Grid>
           <Paper elevation={0}>
             <Grid item className={classes.right}>

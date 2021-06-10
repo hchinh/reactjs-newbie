@@ -1,4 +1,5 @@
-import { Box, Grid, makeStyles, Paper } from '@material-ui/core';
+import { Box, Grid, IconButton, makeStyles, Paper } from '@material-ui/core';
+import { DeleteOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { cartItemsCountSelector } from '../selectors';
@@ -7,13 +8,17 @@ ProductTotal.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(1.5),
-  },
-
-  center: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+
+    paddingLeft: theme.spacing(2),
+
+    fontSize: '14px',
+  },
+
+  center: {
+    textAlign: 'center',
   },
 }));
 
@@ -23,9 +28,9 @@ function ProductTotal() {
 
   return (
     <Box>
-      <Paper elevation={0} className={classes.root}>
-        <Grid container>
-          <Grid item lg={8}>
+      <Paper elevation={0}>
+        <Grid container className={classes.root}>
+          <Grid item lg={5}>
             {`Tất cả (${cartItemsCount}) sản phẩm`}
           </Grid>
           <Grid item lg={2} className={classes.center}>
@@ -33,6 +38,14 @@ function ProductTotal() {
           </Grid>
           <Grid item lg={2} className={classes.center}>
             Số lượng
+          </Grid>
+          <Grid item lg={2} className={classes.center}>
+            Thành tiền
+          </Grid>
+          <Grid item lg={1} className={classes.center}>
+            <IconButton>
+              <DeleteOutlined />
+            </IconButton>
           </Grid>
         </Grid>
       </Paper>
