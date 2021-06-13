@@ -152,7 +152,7 @@ function ListPage(props) {
         <Grid container spacing={1}>
           <Grid item className={classes.left}>
             <Paper elevation={0}>
-              <ProductFilters filter={queryParams} onChange={handleFiltersChange} />
+              <ProductFilters loading={loading} filter={queryParams} onChange={handleFiltersChange} />
             </Paper>
           </Grid>
 
