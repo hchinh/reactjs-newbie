@@ -21,7 +21,7 @@ function CategorySkeletonList({ length = 6 }) {
       <Typography variant="subtitle2">DANH MỤC SẢN PHẨM</Typography>
 
       <Grid container>
-        {Array.from(new Array(length)).map((index) => (
+        {Array.from(new Array(length)).map((item, index) => (
           <Grid item key={index} lg={12}>
             <Box mt={1}>
               <Skeleton width="50%" />
