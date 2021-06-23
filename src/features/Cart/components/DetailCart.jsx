@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { formatPrice } from 'utils';
+import ProductQuantity from './ProductQuantity';
 
 DetailCart.propTypes = {
   onRemove: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DetailCart({ onRemove = null }) {
+function DetailCart({ onRemove = null, onChange = null }) {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const classes = useStyles();
 
@@ -60,12 +62,17 @@ function DetailCart({ onRemove = null }) {
     onRemove(productId);
   };
 
+  const handleChangeQuantity = (product) => {
+    if (!onChange) return;
+    onChange(product);
+  };
+
   return (
     <Box>
       <Paper elevation={0}>
         <ul className={classes.root}>
           {cartItems.map((item) => (
-            <li key={item.product.id}>
+            <li key={item.id}>
               <Grid container>
                 <Grid item lg={5} className={classes.thumbnail}>
                   <img src={`${STATIC_HOST}${item.product.thumbnail?.url}`} alt={item.product.name} width="75px" />
@@ -85,10 +92,10 @@ function DetailCart({ onRemove = null }) {
                   )}
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
-                  {item.quantity}
+                  <ProductQuantity item={item} onChange={handleChangeQuantity} />
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
-                  {formatPrice(item.product.salePrice * item.quantity)}
+                  {!isNaN(item.quantity) ? formatPrice(item.product.salePrice * item.quantity) : formatPrice(0)}
                 </Grid>
                 <Grid item lg={1} className={classes.center}>
                   <IconButton onClick={() => handleRemoveItem(item.id)}>

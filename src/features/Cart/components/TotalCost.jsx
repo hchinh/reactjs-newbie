@@ -9,11 +9,12 @@ TotalCost.propTypes = {};
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flexFlow: 'row wrap',
     justifyContent: 'center',
     marginBottom: theme.spacing(3),
 
     fontSize: '24px',
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 }));
 
@@ -23,7 +24,9 @@ function TotalCost() {
 
   return (
     <Box>
-      <Grid container className={classes.root}>{`Tổng cộng: ${formatPrice(cartTotal)}`}</Grid>
+      <Grid container className={classes.root}>{`Tổng cộng: ${
+        !isNaN(cartTotal) ? formatPrice(cartTotal) : formatPrice(0)
+      }`}</Grid>
       <Button variant="contained" color="secondary" size="large" fullWidth>
         Thanh toán
       </Button>

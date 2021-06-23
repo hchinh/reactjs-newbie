@@ -121,7 +121,7 @@ export default function Header() {
           )}
 
           <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleCartClick}>
-            <Badge badgeContent={cartItemsCount} color="secondary">
+            <Badge badgeContent={!isNaN(cartItemsCount) ? cartItemsCount : 0} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>

@@ -1,7 +1,7 @@
 import { Box, Container, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from './cartSlice';
+import { removeFromCart, setQuantity } from './cartSlice';
 import DetailCart from './components/DetailCart';
 import ProductTotal from './components/ProductTotal';
 import TotalCost from './components/TotalCost';
@@ -32,6 +32,11 @@ function CartFeature() {
     dispatch(action);
   };
 
+  const handleChangeQuantity = (product) => {
+    const action = setQuantity(product);
+    dispatch(action);
+  };
+
   return (
     <Box className={classes.root}>
       <Container>
@@ -41,7 +46,7 @@ function CartFeature() {
         <Grid container>
           <Grid item className={classes.left}>
             <ProductTotal />
-            <DetailCart onRemove={handleRemoveFromCart} />
+            <DetailCart onRemove={handleRemoveFromCart} onChange={handleChangeQuantity} />
           </Grid>
           <Paper elevation={0}>
             <Grid item className={classes.right}>
