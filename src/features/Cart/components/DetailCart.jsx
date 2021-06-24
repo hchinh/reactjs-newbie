@@ -1,6 +1,6 @@
 import { Box, Grid, IconButton, makeStyles, Paper, Typography } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons';
-import { STATIC_HOST } from 'constants/index';
+import { STATIC_HOST, THUMBNAIL_PLACEHOLDER } from 'constants/index';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -75,7 +75,13 @@ function DetailCart({ onRemove = null, onChange = null }) {
             <li key={item.id}>
               <Grid container>
                 <Grid item lg={5} className={classes.thumbnail}>
-                  <img src={`${STATIC_HOST}${item.product.thumbnail?.url}`} alt={item.product.name} width="75px" />
+                  <img
+                    src={
+                      item.product.thumbnail ? `${STATIC_HOST}${item.product.thumbnail?.url}` : THUMBNAIL_PLACEHOLDER
+                    }
+                    alt={item.product.name}
+                    width="75px"
+                  />
 
                   <Typography className={classes.name}>{item.product.name}</Typography>
                 </Grid>
