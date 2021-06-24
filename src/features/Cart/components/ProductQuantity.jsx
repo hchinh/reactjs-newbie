@@ -8,6 +8,19 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexFlow: 'row nowrap',
   },
+
+  button: {
+    padding: 0,
+  },
+
+  input: {
+    textAlign: 'center',
+    width: theme.spacing(3.5),
+
+    padding: 0,
+    border: '1px solid #ccc',
+    borderRadius: theme.spacing(0.25),
+  },
 }));
 
 ProductQuantity.propTypes = {
@@ -27,13 +40,6 @@ function ProductQuantity({ item = {}, onChange = null }) {
       clearTimeout(typingTimeoutRef);
     }
 
-    // const formValue = {
-    //   ...item,
-    //   quantity: parseInt(value),
-    // };
-
-    // onChange(formValue);
-
     typingTimeoutRef.current = setTimeout(() => {
       const formValue = {
         ...item,
@@ -41,7 +47,7 @@ function ProductQuantity({ item = {}, onChange = null }) {
       };
 
       onChange(formValue);
-    }, 500);
+    }, 100);
   };
 
   const handleChangeQuantityInput = (e) => {
@@ -53,6 +59,7 @@ function ProductQuantity({ item = {}, onChange = null }) {
 
   const handleRemoveClick = () => {
     const value = parseInt(quantityTerm) - 1;
+    if (value < 1) return;
     setQuantityTerm(`${value}`);
     handleQuantity(value);
   };
@@ -65,18 +72,13 @@ function ProductQuantity({ item = {}, onChange = null }) {
 
   return (
     <Box className={classes.root}>
-      <IconButton onClick={handleRemoveClick} style={{ padding: 0 }}>
+      <IconButton className={classes.button} onClick={handleRemoveClick}>
         <RemoveSharp />
       </IconButton>
 
-      <input
-        type="tel"
-        value={quantityTerm}
-        onChange={handleChangeQuantityInput}
-        style={{ width: '30px', textAlign: 'center' }}
-      />
+      <input type="tel" value={quantityTerm} onChange={handleChangeQuantityInput} className={classes.input} />
 
-      <IconButton onClick={handleAddClick} style={{ padding: 0 }}>
+      <IconButton className={classes.button} onClick={handleAddClick}>
         <AddSharp />
       </IconButton>
     </Box>

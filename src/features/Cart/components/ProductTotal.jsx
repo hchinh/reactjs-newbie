@@ -31,7 +31,7 @@ function ProductTotal() {
       <Paper elevation={0}>
         <Grid container className={classes.root}>
           <Grid item lg={5}>
-            {`Tất cả (${cartItemsCount}) sản phẩm`}
+            {`Tất cả ${!isNaN(cartItemsCount) ? cartItemsCount : 0} sản phẩm`}
           </Grid>
           <Grid item lg={2} className={classes.center}>
             Đơn giá
