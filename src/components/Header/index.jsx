@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { AccountCircle, Close, ShoppingCart } from '@material-ui/icons';
-import AppleIcon from '@material-ui/icons/Apple';
+import StoreIcon from '@material-ui/icons/Store';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
 import { logout } from 'features/Auth/userSlice';
@@ -88,25 +88,25 @@ export default function Header() {
     <div className={classes.root}>
       <AppBar position="static" style={{ backgroundColor: '#323edd' }}>
         <Toolbar>
-          <AppleIcon className={classes.menuButton} />
+          <StoreIcon className={classes.menuButton} fontSize="large" />
 
           <Typography variant="h6" className={classes.title}>
             <Link className={classes.link} to="/">
-              Apple Store
+              Puppy Market
             </Link>
           </Typography>
 
-          <NavLink className={classes.link} to="/todos">
+          {/* <NavLink className={classes.link} to="/todos">
             <Button color="inherit">Todos</Button>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink className={classes.link} to="/products">
             <Button color="inherit">Product</Button>
           </NavLink>
 
-          <NavLink className={classes.link} to="/albums">
+          {/* <NavLink className={classes.link} to="/albums">
             <Button color="inherit">Albums</Button>
-          </NavLink>
+          </NavLink> */}
 
           {!isLoggedIn && (
             <Button color="inherit" onClick={handleClickOpen}>
