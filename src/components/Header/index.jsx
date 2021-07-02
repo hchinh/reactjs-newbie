@@ -15,6 +15,7 @@ import { cartItemsCountSelector } from 'features/Cart/selectors';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
+import SearchField from './components/SearchField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,6 +77,7 @@ export default function Header() {
   const handleLogoutClick = () => {
     const action = logout();
     dispatch(action);
+    setAnchorEl(null);
   };
 
   const handleCartClick = () => {
@@ -86,7 +88,7 @@ export default function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: '#323edd' }}>
+      <AppBar position="static" style={{ backgroundColor: '#185ADB' }}>
         <Toolbar>
           <StoreIcon className={classes.menuButton} fontSize="large" />
 
@@ -96,17 +98,11 @@ export default function Header() {
             </Link>
           </Typography>
 
-          {/* <NavLink className={classes.link} to="/todos">
-            <Button color="inherit">Todos</Button>
-          </NavLink> */}
+          <SearchField />
 
           <NavLink className={classes.link} to="/products">
             <Button color="inherit">Product</Button>
           </NavLink>
-
-          {/* <NavLink className={classes.link} to="/albums">
-            <Button color="inherit">Albums</Button>
-          </NavLink> */}
 
           {!isLoggedIn && (
             <Button color="inherit" onClick={handleClickOpen}>

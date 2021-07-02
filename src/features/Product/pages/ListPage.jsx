@@ -3,6 +3,7 @@ import { Pagination } from '@material-ui/lab';
 import productApi from 'api/productApi';
 import queryString from 'query-string';
 import React, { useEffect, useMemo, useState } from 'react';
+import DocumentTitle from 'react-document-title';
 import { useHistory, useLocation } from 'react-router';
 import FilterViewer from '../components/FilterViewer';
 
@@ -147,35 +148,37 @@ function ListPage(props) {
   };
 
   return (
-    <Box>
-      <Container>
-        <Grid container spacing={1}>
-          <Grid item className={classes.left}>
-            <Paper elevation={0}>
-              <ProductFilters loading={loading} filter={queryParams} onChange={handleFiltersChange} />
-            </Paper>
+    <DocumentTitle title="Product List">
+      <Box>
+        <Container>
+          <Grid container spacing={1}>
+            <Grid item className={classes.left}>
+              <Paper elevation={0}>
+                <ProductFilters loading={loading} filter={queryParams} onChange={handleFiltersChange} />
+              </Paper>
+            </Grid>
+
+            <Grid item className={classes.right}>
+              <Paper elevation={0}>
+                <ProductSort currentSort={queryParams._sort} onChange={handleSortChange} />
+                <FilterViewer filters={queryParams} onChange={setNewFilters} />
+
+                {loading ? <ProductSkeletonList length={9} /> : <ProductList data={productList} />}
+
+                <Box className={classes.pagination}>
+                  <Pagination
+                    color="primary"
+                    count={Math.ceil(pagination.total / pagination.limit)}
+                    page={pagination.page}
+                    onChange={handlePageChange}
+                  />
+                </Box>
+              </Paper>
+            </Grid>
           </Grid>
-
-          <Grid item className={classes.right}>
-            <Paper elevation={0}>
-              <ProductSort currentSort={queryParams._sort} onChange={handleSortChange} />
-              <FilterViewer filters={queryParams} onChange={setNewFilters} />
-
-              {loading ? <ProductSkeletonList length={9} /> : <ProductList data={productList} />}
-
-              <Box className={classes.pagination}>
-                <Pagination
-                  color="primary"
-                  count={Math.ceil(pagination.total / pagination.limit)}
-                  page={pagination.page}
-                  onChange={handlePageChange}
-                />
-              </Box>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </DocumentTitle>
   );
 }
 

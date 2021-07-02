@@ -2,6 +2,7 @@ import { Box, Container, Grid, LinearProgress, makeStyles, Paper, Snackbar } fro
 import MuiAlert from '@material-ui/lab/Alert';
 import { addToCart } from 'features/Cart/cartSlice';
 import React from 'react';
+import DocumentTitle from 'react-document-title';
 import { useDispatch } from 'react-redux';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import AddToCartForm from '../components/AddToCartForm';
@@ -80,42 +81,44 @@ function DetailPage() {
   };
 
   return (
-    <Box className={classes.root}>
-      <Container>
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          onClose={handleClose}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        >
-          <Alert onClose={handleClose} severity="success">
-            Thêm vào giỏ hàng thành công!
-          </Alert>
-        </Snackbar>
+    <DocumentTitle title="Product Detail">
+      <Box className={classes.root}>
+        <Container>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          >
+            <Alert onClose={handleClose} severity="success">
+              Thêm vào giỏ hàng thành công!
+            </Alert>
+          </Snackbar>
 
-        <Paper elevation={0}>
-          <Grid container>
-            <Grid className={classes.left} item>
-              <ProductThumbnail product={product} />
+          <Paper elevation={0}>
+            <Grid container>
+              <Grid className={classes.left} item>
+                <ProductThumbnail product={product} />
+              </Grid>
+              <Grid className={classes.right} item>
+                <ProductInfo product={product} />
+                <AddToCartForm onSubmit={handleAddToCartForm} />
+              </Grid>
             </Grid>
-            <Grid className={classes.right} item>
-              <ProductInfo product={product} />
-              <AddToCartForm onSubmit={handleAddToCartForm} />
-            </Grid>
-          </Grid>
-        </Paper>
+          </Paper>
 
-        <ProductMenu />
+          <ProductMenu />
 
-        <Switch>
-          <Route path={url} exact>
-            <ProductDescription product={product} />
-          </Route>
-          <Route path={`${url}/additional`} component={ProductAdditional} exact />
-          <Route path={`${url}/reviews`} component={ProductReviews} exact />
-        </Switch>
-      </Container>
-    </Box>
+          <Switch>
+            <Route path={url} exact>
+              <ProductDescription product={product} />
+            </Route>
+            <Route path={`${url}/additional`} component={ProductAdditional} exact />
+            <Route path={`${url}/reviews`} component={ProductReviews} exact />
+          </Switch>
+        </Container>
+      </Box>
+    </DocumentTitle>
   );
 }
 
